@@ -1,0 +1,1407 @@
+<!-- Home Dashboard (Refined Branding) -->
+<!DOCTYPE html><html class="dark" lang="en" style=""><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>Commutr - Smart Transit Dashboard</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&amp;family=Inter:wght@400;500;600&amp;family=JetBrains+Mono:wght@500&amp;family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<script id="tailwind-config">
+  tailwind.config = {
+    darkMode: "class",
+    theme: {
+      extend: {
+        "colors": {
+                "on-surface": "#e2e2e2",
+                "on-tertiary-fixed": "#0b1d29",
+                "primary-fixed": "#ccff00",
+                "on-error": "#690005",
+                "surface-container-high": "#2a2a2a",
+                "primary": "#ffffff",
+                "on-error-container": "#ffdad6",
+                "on-primary-fixed-variant": "#3c4d00",
+                "on-secondary": "#2f3131",
+                "surface-bright": "#393939",
+                "on-tertiary": "#21323e",
+                "surface-variant": "#353535",
+                "error": "#ffb4ab",
+                "primary-fixed-dim": "#b3e600",
+                "inverse-primary": "#506600",
+                "on-primary-container": "#556d00",
+                "error-container": "#93000a",
+                "secondary-container": "#454747",
+                "on-secondary-container": "#b4b5b5",
+                "inverse-surface": "#e2e2e2",
+                "inverse-on-surface": "#303030",
+                "surface": "#131313",
+                "surface-container": "#1f1f1f",
+                "on-surface-variant": "#c4c9ac",
+                "tertiary": "#ffffff",
+                "on-primary": "#283500",
+                "on-primary-fixed": "#161e00",
+                "secondary": "#c6c6c7",
+                "surface-container-low": "#1b1b1b",
+                "secondary-fixed": "#e2e2e2",
+                "tertiary-fixed": "#d2e5f5",
+                "tertiary-fixed-dim": "#b6c9d8",
+                "on-tertiary-container": "#556774",
+                "surface-tint": "#ccff00",
+                "surface-container-highest": "#353535",
+                "on-secondary-fixed-variant": "#454747",
+                "primary-container": "#ccff00",
+                "secondary-fixed-dim": "#c6c6c7",
+                "surface-dim": "#131313",
+                "outline-variant": "#444933",
+                "outline": "#8e9379",
+                "tertiary-container": "#d2e5f5",
+                "on-secondary-fixed": "#1a1c1c",
+                "background": "#131313",
+                "on-background": "#e2e2e2",
+                "surface-container-lowest": "#0e0e0e",
+                "on-tertiary-fixed-variant": "#374956"
+        },
+        "borderRadius": {
+                "DEFAULT": "0.25rem",
+                "lg": "0.5rem",
+                "xl": "0.75rem",
+                "full": "9999px"
+        },
+        "spacing": {
+                "max-width": "1280px",
+                "base": "8px",
+                "margin-mobile": "20px",
+                "margin-desktop": "40px",
+                "gutter": "16px"
+        },
+        "fontFamily": {
+                "label-caps": ["JetBrains Mono"],
+                "label-md": ["Inter"],
+                "headline-lg": ["Space Grotesk"],
+                "headline-lg-mobile": ["Space Grotesk"],
+                "body-md": ["Inter"],
+                "headline-xl": ["Space Grotesk"]
+        },
+        "fontSize": {
+                "label-caps": ["12px", {"lineHeight": "16px", "letterSpacing": "0.1em", "fontWeight": "500"}],
+                "label-md": ["14px", {"lineHeight": "20px", "fontWeight": "500"}],
+                "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                "headline-lg-mobile": ["28px", {"lineHeight": "36px", "fontWeight": "600"}],
+                "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                "headline-xl": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700"}]
+        }
+      },
+    },
+  }
+</script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .hide-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .hide-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+        @keyframes pulse-soft {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.8; transform: scale(1.02); }
+        }
+        .animate-pulse-soft {
+            animation: pulse-soft 3s infinite ease-in-out;
+        }
+        body {
+            min-height: max(884px, 100dvh);
+            background-color: #131313;
+        }
+    </style>
+</head>
+<body class="bg-surface text-on-surface font-body-md min-h-screen pb-32">
+<!-- Top App Bar -->
+<header class="sticky top-0 z-50 bg-surface-container-lowest border-b border-surface-container-high flex justify-between items-center w-full px-margin-mobile h-16">
+<div class="flex items-center gap-base">
+<div class="flex items-center font-headline-lg text-[24px] font-bold text-on-surface tracking-tighter">Commut<span class="text-primary-fixed" style="color: rgb(204, 255, 0);">r</span></div>
+</div>
+<div class="relative p-2 hover:bg-surface-container-high transition-colors rounded-full cursor-pointer">
+<span class="material-symbols-outlined text-on-surface">notifications</span>
+<span class="absolute top-2 right-2 w-2 h-2 bg-primary-fixed rounded-full border-2 border-surface" style="background-color: #ccff00;"></span>
+</div>
+</header>
+<main class="max-w-md mx-auto px-margin-mobile pt-base space-y-gutter">
+<!-- Search Bar Section -->
+<section class="relative group mt-base">
+<div class="flex items-center bg-surface-container border border-surface-container-high rounded-xl px-base py-base shadow-sm focus-within:ring-2 focus-within:ring-primary-fixed transition-all">
+<span class="material-symbols-outlined text-outline ml-2 mr-2">search</span>
+<input class="bg-transparent border-none focus:ring-0 w-full font-body-md text-on-surface placeholder:text-outline" placeholder="Where are you going today?" type="text">
+<span class="material-symbols-outlined text-primary-fixed mr-2" style="color: #ccff00;">my_location</span>
+</div>
+</section>
+<!-- Live Status Section -->
+<section class="space-y-base">
+<div class="flex justify-between items-center px-1">
+<h2 class="font-headline-lg text-[20px] text-primary">Live Status</h2>
+<button class="font-label-md text-primary-fixed" style="color: #ccff00;">View All</button>
+</div>
+<div class="flex gap-gutter overflow-x-auto hide-scrollbar -mx-margin-mobile px-margin-mobile pb-base">
+<!-- LRT-1 Card -->
+<div class="min-w-[200px] bg-surface-container-low rounded-xl p-base shadow-sm border-l-4 border-primary-fixed flex flex-col gap-base shrink-0" style="border-color: #ccff00;">
+<div class="flex justify-between items-start">
+<span class="font-label-md text-primary-fixed" style="color: #ccff00;">LRT-1</span>
+<div class="flex items-center gap-1">
+<span class="w-2 h-2 rounded-full bg-primary-fixed" style="background-color: #ccff00;"></span>
+<span class="font-label-caps text-[10px] text-primary-fixed" style="color: #ccff00;">LIVE</span>
+</div>
+</div>
+<p class="font-body-md text-on-surface font-semibold">Normal Operations</p>
+<div class="flex items-center gap-base mt-1 text-on-surface-variant">
+<span class="material-symbols-outlined text-[18px]">group</span>
+<span class="font-label-md text-[12px]">Low Crowd</span>
+</div>
+</div>
+<!-- LRT-2 Card -->
+<div class="min-w-[200px] bg-surface-container-low rounded-xl p-base shadow-sm border-l-4 border-surface-bright flex flex-col gap-base shrink-0">
+<div class="flex justify-between items-start">
+<span class="font-label-md text-primary">LRT-2</span>
+<div class="flex items-center gap-1">
+<span class="w-2 h-2 rounded-full bg-primary-fixed" style="background-color: #ccff00;"></span>
+<span class="font-label-caps text-[10px] text-primary-fixed" style="color: #ccff00;">LIVE</span>
+</div>
+</div>
+<p class="font-body-md text-on-surface font-semibold">Normal Operations</p>
+<div class="flex items-center gap-base mt-1 text-on-surface-variant">
+<span class="material-symbols-outlined text-[18px]">group</span>
+<span class="font-label-md text-[12px]">Medium Crowd</span>
+</div>
+</div>
+<!-- MRT-3 Card -->
+<div class="min-w-[200px] bg-surface-container-low rounded-xl p-base shadow-sm border-l-4 border-error flex flex-col gap-base shrink-0">
+<div class="flex justify-between items-start">
+<span class="font-label-md text-error">MRT-3</span>
+<div class="flex items-center gap-1">
+<span class="w-2 h-2 rounded-full bg-error animate-pulse"></span>
+<span class="font-label-caps text-[10px] text-error">DELAYED</span>
+</div>
+</div>
+<p class="font-body-md text-on-surface font-semibold">Limited Service</p>
+<div class="flex items-center gap-base mt-1 text-error">
+<span class="material-symbols-outlined text-[18px]" style="font-variation-settings: 'FILL' 1;">group</span>
+<span class="font-label-md text-[12px]">Heavy Crowd</span>
+</div>
+</div>
+</div>
+</section>
+<!-- AI Assistant Banner -->
+<section class="animate-pulse-soft">
+<div class="relative overflow-hidden bg-primary-fixed rounded-xl p-base text-on-primary-fixed flex justify-between items-center" style="background-color: #ccff00; color: #000000;">
+<div class="z-10 py-2">
+<h3 class="font-headline-lg text-[20px] mb-1 font-bold">Need help?</h3>
+<p class="font-body-md text-[14px] opacity-90 mb-4">Ask Commutr AI for the fastest route.</p>
+<button class="bg-surface text-primary-fixed px-base py-2 rounded-lg font-label-md flex items-center gap-base hover:scale-105 transition-transform" style="color: #ccff00;">
+<span class="material-symbols-outlined text-[20px]">smart_toy</span>
+                        Ask AI Assistant
+                    </button>
+</div>
+<span class="material-symbols-outlined text-[100px] absolute -right-4 -bottom-4 opacity-10 rotate-12">assistant</span>
+</div>
+</section>
+<!-- Favorite Routes Section -->
+<section class="space-y-base">
+<h2 class="font-headline-lg text-[20px] text-primary px-1">Favorite Routes</h2>
+<div class="space-y-base">
+<!-- Route Card 1 -->
+<div class="bg-surface-container rounded-xl p-base flex items-center gap-gutter shadow-sm hover:border-primary-fixed transition-all border border-surface-container-high cursor-pointer">
+<div class="w-12 h-12 bg-surface-container-high rounded-lg flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-primary-fixed text-[28px]" style="font-variation-settings: 'FILL' 1; color: #ccff00;">home</span>
+</div>
+<div class="flex-grow">
+<h4 class="font-label-md text-primary">Home to Office</h4>
+<p class="font-body-md text-on-surface-variant text-[14px]">Via LRT-1 &amp; Bus</p>
+</div>
+<div class="text-right shrink-0">
+<p class="font-headline-lg text-[20px] text-primary-fixed" style="color: rgb(204, 255, 0);">45m</p>
+<p class="font-label-md text-[12px] text-primary-fixed" style="color: rgb(204, 255, 0);">On time</p>
+</div>
+</div>
+<!-- Route Card 2 -->
+<div class="bg-surface-container rounded-xl p-base flex items-center gap-gutter shadow-sm hover:border-primary-fixed transition-all border border-surface-container-high cursor-pointer relative">
+<div class="w-12 h-12 bg-surface-container-high rounded-lg flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-primary-fixed text-[28px]" style="color: #ccff00;">school</span>
+</div>
+<div class="flex-grow">
+<h4 class="font-label-md text-primary">UP Diliman to Katipunan</h4>
+<p class="font-body-md text-on-surface-variant text-[14px]">Via Jeepney</p>
+</div>
+<div class="text-right shrink-0">
+<p class="font-headline-lg text-[20px] text-primary">15m</p>
+<p class="font-label-md text-[12px] text-on-surface-variant">Every 5m</p>
+</div>
+<!-- Student Badge Overlay -->
+<div class="absolute -top-2 -right-1 bg-primary-fixed px-2 py-0.5 rounded-full border border-surface text-[10px] font-bold text-on-primary-fixed shadow-sm font-label-caps" style="background-color: #ccff00; color: #000000;">STUDENT</div>
+</div>
+<!-- Route Card 3 -->
+<div class="bg-surface-container rounded-xl p-base flex items-center gap-gutter shadow-sm hover:border-primary-fixed transition-all border border-surface-container-high cursor-pointer">
+<div class="w-12 h-12 bg-surface-container-high rounded-lg flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-on-surface-variant text-[28px]">work</span>
+</div>
+<div class="flex-grow">
+<h4 class="font-label-md text-primary">Office to BGC</h4>
+<p class="font-body-md text-on-surface-variant text-[14px]">Via MRT-3</p>
+</div>
+<div class="text-right shrink-0">
+<p class="font-headline-lg text-[20px] text-error">55m</p>
+<p class="font-label-md text-[12px] text-error">+10m delay</p>
+</div>
+</div>
+</div>
+</section>
+<!-- Quick Map Teaser -->
+<section class="rounded-xl overflow-hidden shadow-lg border border-surface-container-high relative h-40">
+<div class="w-full h-full bg-cover bg-center" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCPkc-LKU4KQyAaYIk8QmdBKp9_lLuLallV1nd4jYDBH69y7-PAAMP9xB_K_Dpzsx5G5diNo-_SVR6FylVj1yRZewKmjiaLrCN1lnZO4KH8A-3J2-bpDFnDVflzBMEfGwE70K82e6AFtTzEkQld6pdXUGv-bjuKz9Z_2-AVrLk-z_MdHLURyi9iX2J4oNO3lh0pahjkVo-SPYJ1g9M8H5_yZiW78DvMt7KRTn01Vd8MSwyNlyUNi2COczQ86ivvcr6YhCvoMpP2Tac')"></div>
+<div class="absolute inset-0 bg-gradient-to-t from-surface-container-lowest/90 to-transparent flex items-end p-base">
+<div class="flex justify-between items-center w-full">
+<div class="flex items-center gap-base">
+<span class="material-symbols-outlined text-primary-fixed" style="color: #ccff00;">map</span>
+<span class="font-label-md text-primary">Nearby Transport Map</span>
+</div>
+<button class="bg-primary-fixed text-on-primary-fixed px-base py-1 rounded-full text-sm font-bold font-label-md" style="background-color: rgb(204, 255, 0); color: rgb(0, 0, 0);">Explore</button>
+</div>
+</div>
+</section>
+</main>
+<!-- Bottom Navigation -->
+<nav class="fixed bottom-0 w-full z-50 flex justify-around items-center h-16 px-base pb-safe bg-surface-container-lowest border-t border-surface-container-high shadow-xl md:hidden">
+<a class="flex flex-col items-center justify-center text-primary-fixed px-4 py-1" href="#" style="color: #ccff00;">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">home</span>
+<span class="font-label-caps text-[10px]">HOME</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant hover:text-primary transition-colors" href="#">
+<span class="material-symbols-outlined">directions_transit</span>
+<span class="font-label-caps text-[10px]">ROUTES</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant hover:text-primary transition-colors" href="#">
+<span class="material-symbols-outlined">warning</span>
+<span class="font-label-caps text-[10px]">REPORTS</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant hover:text-primary transition-colors" href="#">
+<span class="material-symbols-outlined">school</span>
+<span class="font-label-caps text-[10px]">STUDENT</span>
+</a>
+</nav>
+<!-- Desktop Navigation Shell (Responsive Pivot) -->
+<div class="hidden md:flex fixed left-0 top-16 bottom-0 w-64 bg-surface-container-lowest flex-col p-margin-mobile border-r border-surface-container-high">
+<div class="space-y-base">
+<a class="flex items-center gap-gutter p-base bg-primary-fixed text-on-primary-fixed rounded-xl" href="#" style="background-color: #ccff00; color: #000000;">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">home</span>
+<span class="font-label-md font-bold">Home</span>
+</a>
+<a class="flex items-center gap-gutter p-base text-on-surface-variant hover:bg-surface-container rounded-xl transition-colors" href="#">
+<span class="material-symbols-outlined">directions_transit</span>
+<span class="font-label-md">Routes</span>
+</a>
+<a class="flex items-center gap-gutter p-base text-on-surface-variant hover:bg-surface-container rounded-xl transition-colors" href="#">
+<span class="material-symbols-outlined">warning</span>
+<span class="font-label-md">Reports</span>
+</a>
+<a class="flex items-center gap-gutter p-base text-on-surface-variant hover:bg-surface-container rounded-xl transition-colors" href="#">
+<span class="material-symbols-outlined">school</span>
+<span class="font-label-md">Student</span>
+</a>
+</div>
+<div class="mt-auto pt-margin-mobile border-t border-surface-container-high">
+<div class="flex items-center gap-gutter p-base">
+<div class="w-10 h-10 rounded-full bg-surface-container-high flex items-center justify-center overflow-hidden border-2 border-primary-fixed" style="border-color: #ccff00;">
+<img alt="Profile" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBDb7G6BwdacrEP6c2fJi_hPOph7eWQhmG5sDnlFFkM1MNg5ID7005ktRrKd6-JJs4uMJ6c9Qmb7XZcXwSYa2UmIeDS4dxPPN30GPeusB2Joi02BFwCLqACb3rDuNaBZrqZ8fkGNqG-mgIslZa-quje5JivNlVYLY1Mx3ARdGj7xop4nPI8BJNkmThg6UHPBzLzp_ANIt1Ajr3TjscOPaYVa3ZSW4BSQF7QLrBgFswr_9TfQrobMg3VwvZoB3fITpt9HRQ6eWuTBvY">
+</div>
+<div>
+<p class="font-label-md text-primary font-bold">Juan Dela Cruz</p>
+<p class="font-label-caps text-[10px] text-primary-fixed" style="color: #ccff00;">STUDENT ACCOUNT</p>
+</div>
+</div>
+</div>
+</div>
+<!-- Floating Action Button for AI Chat -->
+<button class="fixed bottom-20 right-margin-mobile md:bottom-margin-desktop md:right-margin-desktop w-14 h-14 bg-primary-fixed text-on-primary-fixed rounded-full shadow-lg flex items-center justify-center hover:scale-110 active:scale-95 transition-all z-40 group" style="background-color: #ccff00; color: #000000;">
+<span class="material-symbols-outlined text-[28px]" style="font-variation-settings: 'FILL' 1;">smart_toy</span>
+<span class="absolute right-16 bg-surface-container-lowest text-primary-fixed text-xs font-bold px-3 py-1.5 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity border border-primary-fixed whitespace-nowrap pointer-events-none" style="color: #ccff00; border-color: #ccff00;">Chat with AI</span>
+</button>
+<script>
+        // Simple Micro-interaction for horizontal scrolling cards
+        const scrollContainer = document.querySelector('.overflow-x-auto');
+        let isDown = false;
+        let startX;
+        let scrollLeft;
+
+        scrollContainer.addEventListener('mousedown', (e) => {
+            isDown = true;
+            startX = e.pageX - scrollContainer.offsetLeft;
+            scrollLeft = scrollContainer.scrollLeft;
+        });
+        scrollContainer.addEventListener('mouseleave', () => {
+            isDown = false;
+        });
+        scrollContainer.addEventListener('mouseup', () => {
+            isDown = false;
+        });
+        scrollContainer.addEventListener('mousemove', (e) => {
+            if(!isDown) return;
+            e.preventDefault();
+            const x = e.pageX - scrollContainer.offsetLeft;
+            const walk = (x - startX) * 2;
+            scrollContainer.scrollLeft = scrollLeft - walk;
+        });
+
+        // Search Focus interaction
+        const searchInput = document.querySelector('input[type="text"]');
+        searchInput.addEventListener('focus', () => {
+            searchInput.parentElement.classList.add('shadow-md', 'scale-[1.01]', 'border-primary-fixed');
+        });
+        searchInput.addEventListener('blur', () => {
+            searchInput.parentElement.classList.remove('shadow-md', 'scale-[1.01]', 'border-primary-fixed');
+        });
+    </script>
+
+
+
+
+</body></html>
+
+<!-- Live Tracking (Refined Branding) -->
+<!DOCTYPE html><html class="dark" lang="en" style=""><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>Commutr - MRT-3 Live Status</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;family=Inter:wght@400;500;600&amp;family=JetBrains+Mono:wght@500&amp;family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "on-surface": "#e2e2e2",
+                    "on-tertiary-fixed": "#0b1d29",
+                    "primary-fixed": "#ccff00",
+                    "on-error": "#690005",
+                    "surface-container-high": "#2a2a2a",
+                    "primary": "#ccff00",
+                    "on-error-container": "#ffdad6",
+                    "on-primary-fixed-variant": "#3c4d00",
+                    "on-secondary": "#2f3131",
+                    "surface-bright": "#393939",
+                    "on-tertiary": "#21323e",
+                    "surface-variant": "#353535",
+                    "error": "#ffb4ab",
+                    "primary-fixed-dim": "#ccff00",
+                    "inverse-primary": "#506600",
+                    "on-primary-container": "#161e00",
+                    "error-container": "#93000a",
+                    "secondary-container": "#454747",
+                    "on-secondary-container": "#b4b5b5",
+                    "inverse-surface": "#e2e2e2",
+                    "inverse-on-surface": "#303030",
+                    "surface": "#131313",
+                    "surface-container": "#1f1f1f",
+                    "on-surface-variant": "#c4c9ac",
+                    "tertiary": "#ffffff",
+                    "on-primary": "#161e00",
+                    "on-primary-fixed": "#161e00",
+                    "secondary": "#c6c6c7",
+                    "surface-container-low": "#1b1b1b",
+                    "secondary-fixed": "#e2e2e2",
+                    "tertiary-fixed": "#d2e5f5",
+                    "tertiary-fixed-dim": "#b6c9d8",
+                    "on-tertiary-container": "#556774",
+                    "surface-tint": "#ccff00",
+                    "surface-container-highest": "#353535",
+                    "on-secondary-fixed-variant": "#454747",
+                    "primary-container": "#ccff00",
+                    "secondary-fixed-dim": "#c6c6c7",
+                    "surface-dim": "#131313",
+                    "outline-variant": "#444933",
+                    "outline": "#8e9379",
+                    "tertiary-container": "#d2e5f5",
+                    "on-secondary-fixed": "#1a1c1c",
+                    "background": "#131313",
+                    "on-background": "#e2e2e2",
+                    "surface-container-lowest": "#0e0e0e",
+                    "on-tertiary-fixed-variant": "#374956"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "max-width": "1280px",
+                    "base": "8px",
+                    "margin-mobile": "20px",
+                    "margin-desktop": "40px",
+                    "gutter": "16px"
+            },
+            "fontFamily": {
+                    "label-caps": ["JetBrains Mono"],
+                    "label-md": ["Inter"],
+                    "headline-lg": ["Space Grotesk"],
+                    "headline-lg-mobile": ["Space Grotesk"],
+                    "body-md": ["Inter"],
+                    "headline-xl": ["Space Grotesk"]
+            },
+            "fontSize": {
+                    "label-caps": ["12px", {"lineHeight": "16px", "letterSpacing": "0.1em", "fontWeight": "500"}],
+                    "label-md": ["14px", {"lineHeight": "20px", "fontWeight": "500"}],
+                    "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                    "headline-lg-mobile": ["28px", {"lineHeight": "36px", "fontWeight": "600"}],
+                    "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                    "headline-xl": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            display: inline-block;
+            line-height: 1;
+            text-transform: none;
+            letter-spacing: normal;
+            word-wrap: normal;
+            white-space: nowrap;
+            direction: ltr;
+        }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        .headline-font {
+            font-family: 'Space Grotesk', sans-serif;
+        }
+
+        .mono-font {
+            font-family: 'JetBrains Mono', monospace;
+        }
+
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 4px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: #444933;
+            border-radius: 10px;
+        }
+
+        .live-pulse {
+            animation: pulse 2s infinite;
+        }
+        @keyframes pulse {
+            0% { transform: scale(0.95); opacity: 1; }
+            50% { transform: scale(1.1); opacity: 0.7; }
+            100% { transform: scale(0.95); opacity: 1; }
+        }
+
+        .glow-neon {
+            box-shadow: 0 0 15px rgba(204, 255, 0, 0.4);
+        }
+
+        .active-nav-glow {
+            box-shadow: 0 0 20px rgba(204, 255, 0, 0.25);
+        }
+    </style>
+</head>
+<body class="bg-surface text-on-surface min-h-screen pb-24">
+<!-- Top App Bar -->
+<header class="fixed top-0 w-full z-50 bg-surface-container/80 backdrop-blur-md border-b border-outline-variant/50 flex justify-between items-center px-margin-mobile h-16">
+<div class="flex items-center gap-base">
+<div class="flex items-center gap-2">
+<div class="flex items-center font-bold text-2xl tracking-tighter headline-font"><span class="text-white">Commut</span><span class="text-primary">r</span></div>
+</div>
+</div>
+<div class="flex items-center gap-base">
+<button class="p-2 hover:bg-surface-container rounded-full transition-colors active:scale-90">
+<span class="material-symbols-outlined text-on-surface">notifications</span>
+</button>
+</div>
+</header>
+<main class="pt-20 px-margin-mobile max-w-2xl mx-auto space-y-gutter">
+<!-- Live Map Context / Header Card -->
+<section class="relative h-52 rounded-xl overflow-hidden shadow-2xl border border-outline-variant group">
+<div class="w-full h-full bg-cover bg-center transition-transform duration-1000 group-hover:scale-105" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuAGhlTLbc3vM5bZvfSFS2Yy-4AtzsO8_pZIO2kyKmS2e7bOfuAJikkTO5Ah4BDEdTztgnPPRat6WP9yXH8Mwdq_kyDOZjqhUW1vILGjRWkPs6ALgHt6iFOpj1I779dXL4209raxbOR0V-A2GQ9YKe6RwyZh7oMZOSOsIlI0Po4fIVNdtXbqkG22TFxwtcf_DM7TUG4q7mgGMwRrWrtnWsvRawtyDxUfvgOfrbQQlTuBt_SQI4FWsgkWmCNBw1HoUBX_hO-iKC3-hd4')"></div>
+<div class="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent"></div>
+<div class="absolute bottom-4 left-4 right-4">
+<div class="flex items-center gap-1 mb-2">
+<span class="w-2 h-2 rounded-full bg-primary live-pulse"></span>
+<span class="mono-font text-[10px] uppercase tracking-widest text-primary font-bold font-label-caps">System Live</span>
+</div>
+<h2 class="headline-font text-2xl font-bold text-white mb-1 font-headline-lg">North Ave Station</h2>
+<p class="font-body-md text-secondary text-body-md">Next train in <span class="font-bold text-primary live-pulse">ARRIVING</span></p>
+</div>
+<div class="absolute top-4 right-4 bg-primary text-black font-bold text-xs px-3 py-1.5 rounded-lg shadow-xl mono-font">
+            ₱13 - ₱28
+        </div>
+</section>
+<!-- Station Timeline -->
+<section class="rounded-xl p-6 shadow-sm border border-outline-variant bg-surface-container">
+<div class="flex justify-between items-end mb-8">
+<h3 class="headline-font text-xl font-semibold text-primary font-headline-lg">Route Progress</h3>
+<span class="mono-font text-[10px] uppercase tracking-wider text-on-surface-variant">NB &amp; SB Service</span>
+</div>
+<div class="space-y-0 relative">
+<!-- Vertical Line -->
+<div class="absolute left-[15px] top-4 bottom-4 w-[2px] bg-outline-variant rounded-full"></div>
+<!-- Station Item: North Ave -->
+<div class="relative flex items-start gap-6 pb-10">
+<div class="z-10 w-8 h-8 rounded-full bg-primary flex items-center justify-center border-4 border-surface-container-low shadow-lg glow-neon">
+<span class="material-symbols-outlined text-black text-[18px]">directions_transit</span>
+</div>
+<div class="flex-1 flex justify-between items-center bg-surface-container/50 p-3 rounded-lg border border-primary/20">
+<div>
+<p class="font-semibold text-primary headline-font">North Avenue</p>
+<p class="text-xs text-primary/80 mono-font">Arriving in 2 mins</p>
+</div>
+<div class="flex flex-col items-end gap-1.5">
+<span class="mono-font text-[10px] text-on-surface-variant">Low Crowd</span>
+<div class="w-16 h-1.5 bg-surface-container-high rounded-full overflow-hidden">
+<div class="bg-primary h-full w-[20%]"></div>
+</div>
+</div>
+</div>
+</div>
+<!-- Station Item: Quezon Ave -->
+<div class="relative flex items-start gap-6 pb-10">
+<div class="z-10 w-8 h-8 rounded-full bg-surface-container-high flex items-center justify-center border-4 border-surface-container-low">
+<div class="w-2 h-2 rounded-full bg-outline"></div>
+</div>
+<div class="flex-1 flex justify-between items-center px-3">
+<div>
+<p class="text-on-surface headline-font">Quezon Avenue</p>
+<p class="text-xs text-on-surface-variant mono-font">Next: 6 mins</p>
+</div>
+<div class="flex flex-col items-end gap-1.5">
+<span class="mono-font text-[10px] text-on-surface-variant">Moderate</span>
+<div class="w-16 h-1.5 bg-surface-container-high rounded-full overflow-hidden">
+<div class="bg-secondary h-full w-[55%]"></div>
+</div>
+</div>
+</div>
+</div>
+<!-- Station Item: Kamuning -->
+<div class="relative flex items-start gap-6 pb-10">
+<div class="z-10 w-8 h-8 rounded-full bg-surface-container-high flex items-center justify-center border-4 border-surface-container-low">
+<div class="w-2 h-2 rounded-full bg-outline"></div>
+</div>
+<div class="flex-1 flex justify-between items-center px-3">
+<div>
+<p class="text-on-surface headline-font">GMA-Kamuning</p>
+<p class="text-xs text-on-surface-variant mono-font">Next: 10 mins</p>
+</div>
+<div class="flex flex-col items-end gap-1.5">
+<span class="mono-font text-[10px] text-on-surface-variant">Moderate</span>
+<div class="w-16 h-1.5 bg-surface-container-high rounded-full overflow-hidden">
+<div class="bg-secondary h-full w-[60%]"></div>
+</div>
+</div>
+</div>
+</div>
+<!-- Station Item: Cubao -->
+<div class="relative flex items-start gap-6 pb-10">
+<div class="z-10 w-8 h-8 rounded-full bg-surface-container-high flex items-center justify-center border-4 border-surface-container-low">
+<div class="w-2 h-2 rounded-full bg-outline"></div>
+</div>
+<div class="flex-1 flex justify-between items-center px-3">
+<div class="flex items-center gap-2">
+<p class="text-on-surface headline-font">Araneta-Cubao</p>
+<span class="material-symbols-outlined text-primary text-sm">swap_horiz</span>
+</div>
+<div class="flex flex-col items-end gap-1.5">
+<span class="mono-font text-[10px] text-error font-bold uppercase">Heavy Crowd</span>
+<div class="w-16 h-1.5 bg-surface-container-high rounded-full overflow-hidden">
+<div class="bg-error h-full w-[90%]"></div>
+</div>
+</div>
+</div>
+</div>
+<!-- Station Item: Truncated -->
+<div class="relative flex items-start gap-6">
+<div class="z-10 w-8 h-8 rounded-full bg-surface-container-low flex items-center justify-center border-4 border-surface-container-low">
+<span class="material-symbols-outlined text-outline text-[16px]">more_vert</span>
+</div>
+<div class="flex-1 py-4 flex justify-center border-t border-outline-variant/50 border-dashed">
+<button class="text-primary headline-font font-bold text-sm tracking-wide hover:underline uppercase">VIEW ALL 9 STATIONS TO TAFT</button>
+</div>
+</div>
+</div>
+</section>
+<!-- Community Reports -->
+<section class="space-y-4">
+<div class="flex justify-between items-center">
+<h3 class="headline-font text-lg font-semibold text-primary flex items-center gap-2 font-headline-lg">
+<span class="material-symbols-outlined text-primary">forum</span>
+                Live Feed
+            </h3>
+<button class="bg-primary/10 text-primary px-3 py-1 rounded-lg mono-font text-[10px] font-bold border border-primary/20 font-label-md">POST UPDATE</button>
+</div>
+<div class="space-y-3">
+<!-- Report 1 -->
+<div class="bg-surface-container-low border border-outline-variant rounded-xl p-4 flex gap-4 transition-all hover:bg-surface-container active:scale-[0.98]">
+<div class="w-10 h-10 rounded-xl bg-surface-container-high flex items-center justify-center flex-shrink-0 border border-outline-variant">
+<span class="material-symbols-outlined text-primary">person</span>
+</div>
+<div class="flex-1">
+<p class="font-body-md text-on-surface leading-relaxed text-body-md">"Long line at <span class="text-primary font-bold">Ayala Station</span> southbound entrance. Roughly 15 min wait."</p>
+<div class="flex items-center gap-4 mt-3">
+<span class="mono-font text-[10px] text-on-surface-variant">3m ago</span>
+<button class="flex items-center gap-1.5 group">
+<span class="material-symbols-outlined text-[16px] text-primary group-hover:scale-110 transition-transform">thumb_up</span>
+<span class="mono-font text-[10px] text-on-surface-variant">12</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Report 2 -->
+<div class="bg-surface-container-low border border-outline-variant rounded-xl p-4 flex gap-4 transition-all hover:bg-surface-container active:scale-[0.98]">
+<div class="w-10 h-10 rounded-xl bg-surface-container-high flex items-center justify-center flex-shrink-0 border border-outline-variant">
+<span class="material-symbols-outlined text-primary">ac_unit</span>
+</div>
+<div class="flex-1">
+<p class="font-body-md text-on-surface leading-relaxed text-body-md">"Train aircon at Coach 3 is very cold. Feels great! ❄️"</p>
+<div class="flex items-center gap-4 mt-3">
+<span class="mono-font text-[10px] text-on-surface-variant">12m ago</span>
+<button class="flex items-center gap-1.5 group">
+<span class="material-symbols-outlined text-[16px] text-primary group-hover:scale-110 transition-transform">thumb_up</span>
+<span class="mono-font text-[10px] text-on-surface-variant">4</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+</section>
+</main>
+<!-- AI Assistant FAB -->
+<button class="fixed bottom-24 right-6 w-14 h-14 bg-primary text-black rounded-2xl shadow-2xl flex items-center justify-center z-40 transition-all active:scale-90 hover:scale-110 glow-neon">
+<span class="material-symbols-outlined text-[28px]">smart_toy</span>
+</button>
+<!-- Bottom Nav Bar -->
+<nav class="fixed bottom-0 w-full z-50 bg-surface-container-lowest/95 backdrop-blur-xl border-t border-outline-variant/30 h-20 px-margin-mobile flex justify-around items-start pt-3">
+<!-- Home -->
+<a class="flex flex-col items-center gap-1 group" href="#">
+<span class="material-symbols-outlined text-on-surface-variant group-hover:text-primary transition-colors">home</span>
+<span class="mono-font text-[10px] uppercase tracking-tighter text-on-surface-variant font-label-caps">Home</span>
+</a>
+<!-- Routes (Active) -->
+<a class="flex flex-col items-center gap-1 relative" href="#">
+<div class="absolute -top-1 w-8 h-1 bg-primary rounded-full active-nav-glow"></div>
+<span class="material-symbols-outlined text-primary" style="font-variation-settings: 'FILL' 1;">directions_transit</span>
+<span class="mono-font text-[10px] uppercase tracking-tighter text-primary font-bold font-label-caps">Routes</span>
+</a>
+<!-- Reports -->
+<a class="flex flex-col items-center gap-1 group" href="#">
+<span class="material-symbols-outlined text-on-surface-variant group-hover:text-primary transition-colors">warning</span>
+<span class="mono-font text-[10px] uppercase tracking-tighter text-on-surface-variant font-label-caps">Reports</span>
+</a>
+<!-- Profile/Student -->
+<a class="flex flex-col items-center gap-1 group" href="#">
+<span class="material-symbols-outlined text-on-surface-variant group-hover:text-primary transition-colors">account_circle</span>
+<span class="mono-font text-[10px] uppercase tracking-tighter text-on-surface-variant font-label-caps">Profile</span>
+</a>
+</nav>
+<script>
+    // Interactive station items
+    document.querySelectorAll('.flex-1').forEach(item => {
+        item.addEventListener('click', () => {
+            const originalBg = item.style.backgroundColor;
+            item.style.backgroundColor = 'rgba(204, 255, 0, 0.08)';
+            setTimeout(() => {
+                item.style.backgroundColor = originalBg;
+            }, 300);
+        });
+    });
+
+    // Live arrival simulator
+    setInterval(() => {
+        const timerEls = document.querySelectorAll('.text-primary');
+        timerEls.forEach(el => {
+            if (el.textContent.includes('mins')) {
+                let currentVal = parseFloat(el.textContent);
+                if (currentVal > 0.5) {
+                    el.textContent = (currentVal - 0.1).toFixed(1) + " mins";
+                } else {
+                    el.textContent = "ARRIVING";
+                    el.classList.add('live-pulse');
+                }
+            }
+        });
+    }, 6000);
+</script>
+
+
+
+
+</body></html>
+
+<!-- Smart Route Planner (Refined Branding) -->
+<!DOCTYPE html><html class="dark" lang="en" style=""><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>Commutr - Smart Route Planner</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;family=Inter:wght@400;500;600&amp;family=JetBrains+Mono:wght@500&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-surface": "#e2e2e2",
+                        "on-tertiary-fixed": "#161e00",
+                        "primary-fixed": "#c3f400",
+                        "on-error": "#690005",
+                        "surface-container-high": "#2a2a2a",
+                        "primary": "#ccff00",
+                        "on-error-container": "#ffdad6",
+                        "on-primary-fixed-variant": "#3c4d00",
+                        "on-secondary": "#2f3131",
+                        "surface-bright": "#393939",
+                        "on-tertiary": "#21323e",
+                        "surface-variant": "#353535",
+                        "error": "#ffb4ab",
+                        "primary-fixed-dim": "#abd600",
+                        "inverse-primary": "#506600",
+                        "on-primary-container": "#556d00",
+                        "error-container": "#93000a",
+                        "secondary-container": "#454747",
+                        "on-secondary-container": "#b4b5b5",
+                        "inverse-surface": "#e2e2e2",
+                        "inverse-on-surface": "#303030",
+                        "surface": "#131313",
+                        "surface-container": "#1f1f1f",
+                        "on-surface-variant": "#c4c9ac",
+                        "tertiary": "#ffffff",
+                        "on-primary": "#283500",
+                        "on-primary-fixed": "#161e00",
+                        "secondary": "#c6c6c7",
+                        "surface-container-low": "#1b1b1b",
+                        "secondary-fixed": "#e2e2e2",
+                        "tertiary-fixed": "#d2e5f5",
+                        "tertiary-fixed-dim": "#b6c9d8",
+                        "on-tertiary-container": "#556774",
+                        "surface-tint": "#abd600",
+                        "surface-container-highest": "#353535",
+                        "on-secondary-fixed-variant": "#454747",
+                        "primary-container": "#c3f400",
+                        "secondary-fixed-dim": "#c6c6c7",
+                        "surface-dim": "#131313",
+                        "outline-variant": "#444933",
+                        "outline": "#8e9379",
+                        "tertiary-container": "#d2e5f5",
+                        "on-secondary-fixed": "#1a1c1c",
+                        "background": "#131313",
+                        "on-background": "#e2e2e2",
+                        "surface-container-lowest": "#0e0e0e",
+                        "on-tertiary-fixed-variant": "#374956"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "max-width": "1280px",
+                        "base": "8px",
+                        "margin-mobile": "20px",
+                        "margin-desktop": "40px",
+                        "gutter": "16px"
+                    },
+                    "fontFamily": {
+                        "label-caps": ["JetBrains Mono"],
+                        "label-md": ["Inter"],
+                        "headline-lg": ["Space Grotesk"],
+                        "headline-lg-mobile": ["Space Grotesk"],
+                        "body-md": ["Inter"],
+                        "headline-xl": ["Space Grotesk"]
+                    },
+                    "fontSize": {
+                        "label-caps": ["12px", {"lineHeight": "16px", "letterSpacing": "0.1em", "fontWeight": "500"}],
+                        "label-md": ["14px", {"lineHeight": "20px", "fontWeight": "500"}],
+                        "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                        "headline-lg-mobile": ["28px", {"lineHeight": "36px", "fontWeight": "600"}],
+                        "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                        "headline-xl": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700"}]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        body { font-family: 'Inter', sans-serif; background-color: #131313; color: #e2e2e2; }
+        h1, h2, h3, h4, .font-headline { font-family: 'Space Grotesk', sans-serif; }
+        .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
+        .glass-header { backdrop-filter: blur(12px); background: rgba(19, 19, 19, 0.8); }
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+    </style>
+</head>
+<body class="bg-background text-on-surface">
+<!-- Top Navigation -->
+<header class="fixed top-0 w-full z-50 glass-header border-b border-outline-variant">
+<div class="flex justify-between items-center w-full px-5 h-16 max-w-screen-xl mx-auto">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-primary">menu</span>
+<div class="flex items-center gap-2">
+<div class="flex items-center font-headline text-2xl font-bold tracking-[-0.06em] text-on-surface">Commut<span class="text-primary">r</span></div>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<span class="material-symbols-outlined text-on-surface-variant">notifications</span>
+<div class="w-8 h-8 rounded-full overflow-hidden border border-outline-variant">
+<img class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuADlbyrf7shP_Uw1ziG-esroM0K6ew4C5nK14AY39ulCD12l2TEsWjGT0ofrENelzzK5u5AUwD2Z-CE4YMxJ0eTGDIGUqnyucG0mw1O_N5aYimXVnJtMNraDsLGv373vw3mtxCCMuE90O6imYjRXbhjWnIlPiyDJUkBZxnENq9dh5b4B_8HJBCVWL7DqV4oNItLyOUIFhVAfR8gsfLFJB9VtBmevMof6Va0RVJ684WBguQPXCFwFaQ2QUZSuVOV2jlomYJasYTSz0g">
+</div>
+</div>
+</div>
+</header>
+<main class="pt-16 pb-24 min-h-screen">
+<!-- Search Context Header -->
+<div class="bg-surface-container-lowest p-5 border-b border-outline-variant sticky top-16 z-40">
+<div class="max-w-md mx-auto">
+<div class="flex items-center gap-4 bg-surface-container p-4 rounded-xl border border-outline-variant">
+<div class="flex flex-col items-center gap-1">
+<span class="material-symbols-outlined text-primary text-[18px]">radio_button_checked</span>
+<div class="w-0.5 h-6 bg-outline-variant"></div>
+<span class="material-symbols-outlined text-outline text-[18px]">location_on</span>
+</div>
+<div class="flex-1 space-y-3">
+<div class="text-sm font-medium text-white border-b border-outline-variant pb-1">Cubao, Quezon City</div>
+<div class="text-sm font-medium text-white">BGC, Taguig</div>
+</div>
+<button class="bg-primary p-2 rounded-lg text-on-primary">
+<span class="material-symbols-outlined">swap_vert</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Route Results List -->
+<div class="px-5 mt-6 max-w-md mx-auto space-y-4">
+<!-- Route Card 1: Fastest -->
+<div class="bg-surface-container-low rounded-xl border border-outline-variant overflow-hidden transition-all active:scale-[0.98]">
+<div class="p-4">
+<div class="flex justify-between items-start mb-4">
+<div class="flex flex-col gap-2">
+<span class="bg-primary text-on-primary text-[10px] font-bold px-2.5 py-0.5 rounded-full uppercase tracking-widest w-fit">Fastest</span>
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary">directions_transit</span>
+<span class="material-symbols-outlined text-outline text-sm">chevron_right</span>
+<span class="material-symbols-outlined text-primary">directions_bus</span>
+</div>
+</div>
+<div class="text-right">
+<div class="text-2xl font-bold font-headline text-primary text-headline-lg">45m</div>
+<div class="text-xs font-medium text-on-surface-variant text-body-md">₱35.00 Total</div>
+</div>
+</div>
+<!-- Step-by-step Preview -->
+<div class="mt-4 border-t border-outline-variant pt-4">
+<h4 class="text-xs font-bold uppercase tracking-widest text-on-surface-variant mb-4 font-label-caps text-label-caps text-body-md">Quick Steps</h4>
+<div class="space-y-4">
+<div class="flex gap-4">
+<div class="flex flex-col items-center">
+<div class="w-6 h-6 rounded-full bg-primary flex items-center justify-center">
+<span class="material-symbols-outlined text-on-primary text-[14px] font-bold">train</span>
+</div>
+<div class="w-px h-8 bg-outline-variant my-1"></div>
+</div>
+<div class="flex-1">
+<p class="text-sm font-semibold text-white text-body-md">MRT-3 Cubao to Ayala Station</p>
+<p class="text-xs text-on-surface-variant text-body-md">22 mins • Every 8m</p>
+</div>
+</div>
+<div class="flex gap-4">
+<div class="flex flex-col items-center">
+<div class="w-6 h-6 rounded-full bg-surface-container flex items-center justify-center border border-outline">
+<span class="material-symbols-outlined text-on-surface text-[14px]">directions_walk</span>
+</div>
+<div class="w-px h-8 bg-outline-variant my-1"></div>
+</div>
+<div class="flex-1">
+<p class="text-sm font-semibold text-white text-body-md">Walk to BGC Bus Terminal</p>
+<p class="text-xs text-on-surface-variant text-body-md">5 mins • 400m</p>
+</div>
+</div>
+<div class="flex gap-4">
+<div class="flex flex-col items-center">
+<div class="w-6 h-6 rounded-full bg-primary flex items-center justify-center">
+<span class="material-symbols-outlined text-on-primary text-[14px] font-bold">bus_alert</span>
+</div>
+</div>
+<div class="flex-1">
+<p class="text-sm font-semibold text-white text-body-md">BGC Bus East Express</p>
+<p class="text-xs text-primary font-medium">15 mins • Live Update</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Route Card 2: Student Choice -->
+<div class="bg-surface-container-low rounded-xl border border-primary overflow-hidden transition-all active:scale-[0.98]">
+<div class="bg-primary px-4 py-1.5 flex items-center gap-2">
+<span class="material-symbols-outlined text-[16px] text-on-primary font-bold">school</span>
+<span class="text-[10px] font-bold uppercase tracking-widest text-on-primary font-label-caps text-label-caps">Student Budget Mode</span>
+</div>
+<div class="p-4">
+<div class="flex justify-between items-start">
+<div class="flex flex-col gap-3">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-outline">airport_shuttle</span>
+<span class="material-symbols-outlined text-outline-variant text-sm">chevron_right</span>
+<span class="material-symbols-outlined text-outline">directions_walk</span>
+</div>
+<p class="text-sm font-medium text-white">Jeepney (Project 4) + 15m walk</p>
+</div>
+<div class="text-right">
+<div class="text-2xl font-bold font-headline text-white text-headline-lg">1h 05m</div>
+<div class="text-xs font-bold text-primary">₱24.00 Total</div>
+</div>
+</div>
+<div class="mt-4 bg-surface-container-high rounded-lg p-3 flex items-center gap-3 border border-outline-variant">
+<div class="w-12 h-12 rounded bg-surface-container overflow-hidden flex-shrink-0 border border-outline-variant">
+<img class="w-full h-full object-cover grayscale opacity-80" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD68EJjIkKVKwQztgfYKxiZ_qHG9uksJEPT3bEQa7fuCbhM3vnUZ1XwAkUroM-jGboElSI5cj3M_IJVmzaPnpLFxrNtBF8Wj8UzspwEtSmOK4nWfCXDhTQ-zSpS6_eKgQPHhiPq6QxakcoXzm5-r7fLVmgv5QpX9PED8hkXZ2MH6Ml9uqM7GYDW5R8r2acIvvx4IdB5sbdxH_DxRdZ2hFNP9Gi4yRDSYev-z48qTeJUwN-FKCC_CZbMjNghATsUTX2J78dJIFIzS5Q">
+</div>
+<p class="text-xs italic text-on-surface-variant leading-tight text-body-md">"Cheapest option today. Expect some walking near Kalayaan Ave."</p>
+</div>
+</div>
+</div>
+<!-- Route Card 3: Accessible -->
+<div class="bg-surface-container-low rounded-xl border border-outline-variant overflow-hidden transition-all active:scale-[0.98]">
+<div class="p-4">
+<div class="flex justify-between items-start">
+<div class="flex flex-col">
+<div class="flex items-center gap-2 mb-3">
+<span class="material-symbols-outlined text-primary" style="font-variation-settings: 'FILL' 1;">accessible</span>
+<span class="text-[10px] font-bold uppercase tracking-widest text-primary font-label-caps text-label-caps">Accessible Route</span>
+</div>
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-outline">directions_bus</span>
+<span class="material-symbols-outlined text-outline-variant text-sm">add</span>
+<span class="material-symbols-outlined text-outline">directions_bus</span>
+</div>
+</div>
+<div class="text-right">
+<div class="text-2xl font-bold font-headline text-white text-headline-lg">1h 15m</div>
+<div class="text-xs font-medium text-on-surface-variant text-body-md">₱42.00 Total</div>
+</div>
+</div>
+<div class="mt-4 border-l-2 border-primary/40 pl-4 py-1">
+<p class="text-sm font-semibold text-white text-body-md">EDSA Carousel Bus</p>
+<p class="text-xs text-on-surface-variant leading-relaxed text-body-md">Uses elevator-equipped stations and low-floor buses only. 1 transfer at Guadalupe.</p>
+</div>
+</div>
+</div>
+</div>
+<!-- Floating AI Assistant -->
+<button class="fixed bottom-20 right-5 w-14 h-14 bg-primary text-on-primary rounded-full shadow-2xl flex items-center justify-center z-40 active:scale-90 transition-transform">
+<span class="material-symbols-outlined text-[32px] font-bold">smart_toy</span>
+</button>
+</main>
+<!-- Bottom Navigation -->
+<nav class="fixed bottom-0 w-full z-50 bg-surface-container-lowest border-t border-outline-variant shadow-2xl h-16 px-4 pb-safe flex justify-around items-center">
+<div class="flex flex-col items-center justify-center text-on-surface-variant transition-colors px-3 py-1">
+<span class="material-symbols-outlined">home</span>
+<span class="text-[10px] font-bold font-label-caps text-label-caps">Home</span>
+</div>
+<div class="flex flex-col items-center justify-center text-primary transition-all scale-105">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">directions_transit</span>
+<span class="text-[10px] font-bold font-label-caps text-label-caps">Routes</span>
+</div>
+<div class="flex flex-col items-center justify-center text-on-surface-variant transition-colors px-3 py-1">
+<span class="material-symbols-outlined">warning</span>
+<span class="text-[10px] font-bold font-label-caps text-label-caps">Reports</span>
+</div>
+<div class="flex flex-col items-center justify-center text-on-surface-variant transition-colors px-3 py-1">
+<span class="material-symbols-outlined">school</span>
+<span class="text-[10px] font-bold font-label-caps text-label-caps">Student</span>
+</div>
+</nav>
+<script>
+        // Simple interaction for route card highlighting
+        document.querySelectorAll('.rounded-xl').forEach(card => {
+            card.addEventListener('click', () => {
+                document.querySelectorAll('.rounded-xl').forEach(c => {
+                    if (!c.classList.contains('border-primary')) {
+                        c.classList.remove('ring-1', 'ring-primary', 'border-primary');
+                        c.classList.add('border-outline-variant');
+                    }
+                });
+                if (!card.classList.contains('border-primary')) {
+                    card.classList.remove('border-outline-variant');
+                    card.classList.add('ring-1', 'ring-primary', 'border-primary');
+                }
+            });
+        });
+    </script>
+
+
+
+
+</body></html>
+
+<!-- Community Hub (Refined Branding) -->
+<!DOCTYPE html><html class="dark" lang="en" style=""><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0, viewport-fit=cover" name="viewport">
+<title>Commutr | Community Reports &amp; Student Mode</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&amp;family=Inter:wght@400;500&amp;family=JetBrains+Mono:wght@500&amp;family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .active-tab-indicator {
+            transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .report-card:active {
+            transform: scale(0.98);
+            transition: transform 0.1s ease;
+        }
+        .custom-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .student-mode-border {
+            border-left: 4px solid #ccff00; /* Lime Green accent */
+        }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-surface": "#e2e2e2",
+                        "on-tertiary-fixed": "#0b1d29",
+                        "primary-fixed": "#ccff00",
+                        "on-error": "#690005",
+                        "surface-container-high": "#2a2a2a",
+                        "primary": "#ffffff",
+                        "on-error-container": "#ffdad6",
+                        "on-primary-fixed-variant": "#3c4d00",
+                        "on-secondary": "#2f3131",
+                        "surface-bright": "#393939",
+                        "on-tertiary": "#21323e",
+                        "surface-variant": "#353535",
+                        "error": "#ffb4ab",
+                        "primary-fixed-dim": "#b8e600",
+                        "inverse-primary": "#506600",
+                        "on-primary-container": "#556d00",
+                        "error-container": "#93000a",
+                        "secondary-container": "#454747",
+                        "on-secondary-container": "#b4b5b5",
+                        "inverse-surface": "#e2e2e2",
+                        "inverse-on-surface": "#303030",
+                        "surface": "#131313",
+                        "surface-container": "#1f1f1f",
+                        "on-surface-variant": "#c4c9ac",
+                        "tertiary": "#ffffff",
+                        "on-primary": "#283500",
+                        "on-primary-fixed": "#161e00",
+                        "secondary": "#c6c6c7",
+                        "surface-container-low": "#1b1b1b",
+                        "secondary-fixed": "#e2e2e2",
+                        "tertiary-fixed": "#d2e5f5",
+                        "tertiary-fixed-dim": "#b6c9d8",
+                        "on-tertiary-container": "#556774",
+                        "surface-tint": "#ccff00",
+                        "surface-container-highest": "#353535",
+                        "on-secondary-fixed-variant": "#454747",
+                        "primary-container": "#ccff00",
+                        "secondary-fixed-dim": "#c6c6c7",
+                        "surface-dim": "#131313",
+                        "outline-variant": "#444933",
+                        "outline": "#8e9379",
+                        "tertiary-container": "#d2e5f5",
+                        "on-secondary-fixed": "#1a1c1c",
+                        "background": "#131313",
+                        "on-background": "#e2e2e2",
+                        "surface-container-lowest": "#0e0e0e",
+                        "on-tertiary-fixed-variant": "#374956"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "max-width": "1280px",
+                        "base": "8px",
+                        "margin-mobile": "20px",
+                        "margin-desktop": "40px",
+                        "gutter": "16px"
+                    },
+                    "fontFamily": {
+                        "label-caps": ["JetBrains Mono"],
+                        "label-md": ["Inter"],
+                        "headline-lg": ["Space Grotesk"],
+                        "headline-lg-mobile": ["Space Grotesk"],
+                        "body-md": ["Inter"],
+                        "headline-xl": ["Space Grotesk"],
+                        "headline-sm": ["Space Grotesk"],
+                        "label-sm": ["Inter"],
+                        "headline-md": ["Space Grotesk"]
+                    },
+                    "fontSize": {
+                        "label-caps": ["12px", {"lineHeight": "16px", "letterSpacing": "0.1em", "fontWeight": "500"}],
+                        "label-md": ["14px", {"lineHeight": "20px", "fontWeight": "500"}],
+                        "label-sm": ["12px", {"lineHeight": "16px", "fontWeight": "500"}],
+                        "label-sm-mobile": ["11px", {"lineHeight": "14px", "fontWeight": "500"}],
+                        "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                        "headline-lg-mobile": ["28px", {"lineHeight": "36px", "fontWeight": "600"}],
+                        "headline-sm": ["20px", {"lineHeight": "28px", "fontWeight": "600"}],
+                        "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                        "headline-xl": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                        "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "700"}]
+                    }
+                },
+            },
+        }
+    </script>
+</head>
+<body class="bg-background text-on-surface font-body-md min-h-screen pb-24" style="background-color: #061422;">
+<!-- Top App Bar -->
+<header class="bg-surface-container-lowest border-b border-white/10 fixed top-0 w-full z-50 flex justify-between items-center px-margin-mobile h-16">
+<div class="flex items-center gap-3">
+<button class="material-symbols-outlined text-primary-fixed p-2 rounded-full hover:bg-surface-container transition-colors" style="color: #ccff00;">
+                menu
+            </button>
+<div class="flex items-center font-headline-lg text-[24px] font-bold text-on-surface tracking-tighter">Commut<span class="text-primary-fixed" style="color: rgb(204, 255, 0);">r</span></div>
+</div>
+<div class="flex items-center gap-2">
+<button class="material-symbols-outlined text-primary-fixed p-2 rounded-full hover:bg-surface-container transition-colors" style="color: #ccff00;">
+                notifications
+            </button>
+</div>
+</header>
+<main class="pt-20 px-margin-mobile max-w-md mx-auto">
+<!-- Segmented Control -->
+<div class="sticky top-16 z-40 bg-background/80 backdrop-blur-md py-4">
+<div class="bg-surface-container-high rounded-xl p-1 flex relative">
+<div class="absolute h-[calc(100%-8px)] w-[calc(50%-4px)] bg-primary-fixed rounded-lg shadow-sm active-tab-indicator" id="segment-glider" style="background-color: #ccff00; transform: translateX(0px);"></div>
+<button class="relative z-10 flex-1 py-2 font-label-md text-label-md text-center text-on-primary-fixed transition-colors" onclick="switchTab('reports')">Reports</button>
+<button class="relative z-10 flex-1 py-2 font-label-md text-label-md text-center text-on-surface transition-colors" onclick="switchTab('student')">Student Mode</button>
+</div>
+</div>
+<!-- Tab: Reports -->
+<div class="space-y-4 mt-2" id="reports-tab">
+<div class="flex items-center justify-between mb-4">
+<h2 class="font-headline-md text-headline-md text-primary">Community Feed</h2>
+<div class="flex gap-2">
+<span class="flex items-center gap-1 bg-primary-fixed/20 text-primary-fixed px-3 py-1 rounded-full text-label-sm font-label-sm border border-primary-fixed/30" style="color: #ccff00;">
+<span class="w-2 h-2 rounded-full bg-primary-fixed animate-pulse" style="background-color: #ccff00;"></span>
+                        LIVE
+                    </span>
+</div>
+</div>
+<!-- Report Card 1 -->
+<div class="report-card bg-surface-container rounded-xl p-4 shadow-sm border border-white/5 transition-all">
+<div class="flex items-start gap-4">
+<div class="w-10 h-10 rounded-full bg-error-container flex items-center justify-center text-error">
+<span class="material-symbols-outlined">warning</span>
+</div>
+<div class="flex-1">
+<div class="flex justify-between items-start">
+<h3 class="font-label-md text-label-md text-primary">Broken Escalator at LRT-2 Santolan</h3>
+<span class="text-label-sm text-outline">12m ago</span>
+</div>
+<p class="text-body-md text-on-surface-variant mt-1 font-body-md">Concourse level escalator to eastbound platform is undergoing maintenance. Heavy crowding at stairs.</p>
+<div class="mt-4 flex items-center gap-3">
+<button class="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-surface-container-high text-on-surface hover:bg-primary-fixed hover:text-on-primary-fixed transition-colors">
+<span class="material-symbols-outlined text-[18px]">thumb_up</span>
+<span class="text-label-sm">18 Upvotes</span>
+</button>
+<button class="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-surface-container-high text-on-surface hover:bg-primary-fixed hover:text-on-primary-fixed transition-colors">
+<span class="material-symbols-outlined text-[18px]">verified</span>
+<span class="text-label-sm">Confirm</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+<!-- Report Card 2 -->
+<div class="report-card bg-surface-container rounded-xl p-4 shadow-sm border border-white/5 transition-all">
+<div class="flex items-start gap-4">
+<div class="w-10 h-10 rounded-full bg-secondary-container flex items-center justify-center text-primary-fixed" style="color: #ccff00;">
+<span class="material-symbols-outlined">traffic</span>
+</div>
+<div class="flex-1">
+<div class="flex justify-between items-start">
+<h3 class="font-label-md text-label-md text-primary">Traffic heavy at EDSA-Kamuning</h3>
+<span class="text-label-sm text-outline">24m ago</span>
+</div>
+<p class="text-body-md text-on-surface-variant mt-1 font-body-md">Stalled bus at the flyover is blocking two lanes. Anticipate 20-30 mins delay.</p>
+<div class="mt-4 flex items-center gap-3">
+<button class="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-surface-container-high text-on-surface hover:bg-primary-fixed hover:text-on-primary-fixed transition-colors">
+<span class="material-symbols-outlined text-[18px]">thumb_up</span>
+<span class="text-label-sm">42 Upvotes</span>
+</button>
+<button class="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-surface-container-high text-on-surface hover:bg-primary-fixed hover:text-on-primary-fixed transition-colors">
+<span class="material-symbols-outlined text-[18px]">verified</span>
+<span class="text-label-sm">Confirm</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+<!-- Report Card 3 -->
+<div class="report-card bg-surface-container rounded-xl overflow-hidden shadow-sm border border-white/5 transition-all">
+<div class="h-40 bg-cover bg-center grayscale contrast-125" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuADNhqq_H-5uG_Ytwbxb_uNV9exMAYs2n9sFHc3Q0uDC8FfMCptWlk-PigTz9RHghQwTVlBb6KoiU9qgaD8rdlafc0E0DPl6e3jn9HXEJoC8KPs7yXWJG2YPNhM9pthxDJMJRpeyasO8gmFCq8Jp7ghW4uNl2c9dlWrmB8maeG2q-X46rJGGTxOT6G1xqkXR-rqHBqaUDY8As7cHIYnJ-BcijzScRuZ48u9QTyFRosur5RTQWJwNj-lixgZZEq86YCtAJr0dN1nz9k')"></div>
+<div class="p-4">
+<div class="flex items-start gap-4">
+<div class="w-10 h-10 rounded-full bg-primary-fixed/20 flex items-center justify-center text-primary-fixed border border-primary-fixed/30" style="color: #ccff00;">
+<span class="material-symbols-outlined">directions_bus</span>
+</div>
+<div class="flex-1">
+<div class="flex justify-between items-start">
+<h3 class="font-label-md text-label-md text-primary">Ayala Jeepney Terminal Update</h3>
+<span class="text-label-sm text-outline">1h ago</span>
+</div>
+<p class="text-body-md text-on-surface-variant mt-1 font-body-md">Queue is moving fast for Washington-bound trips. 5 jeeps in line.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Tab: Student Mode -->
+<div class="hidden space-y-4 mt-2" id="student-tab">
+<div class="bg-primary-fixed/10 rounded-2xl p-6 border border-primary-fixed/20 flex items-center gap-4">
+<div class="w-12 h-12 bg-primary-fixed rounded-full flex items-center justify-center text-on-primary-fixed" style="background-color: #ccff00;">
+<span class="material-symbols-outlined">school</span>
+</div>
+<div>
+<h2 class="font-headline-md text-headline-md text-primary">Student Essentials</h2>
+<p class="text-label-sm text-primary-fixed" style="color: #ccff00;">Exclusive perks for your commute</p>
+</div>
+</div>
+<div class="grid grid-cols-2 gap-3">
+<!-- Meal Card -->
+<div class="col-span-2 student-mode-border bg-surface-container p-4 rounded-xl shadow-sm border border-white/5">
+<div class="flex justify-between items-center">
+<span class="bg-primary-fixed px-2 py-0.5 rounded text-[10px] font-bold text-on-primary-fixed uppercase tracking-wider" style="background-color: #ccff00;">Food Trip</span>
+<span class="text-primary-fixed font-bold" style="color: #ccff00;">₱50</span>
+</div>
+<h3 class="font-headline-md text-headline-md mt-2 text-primary">₱50 Meals near Legarda</h3>
+<p class="text-body-md text-on-surface-variant mt-1">Sizzling Tapsilog for students at "Kanto Canteen". Just show your ID!</p>
+<div class="mt-4 flex items-center gap-2 text-outline">
+<span class="material-symbols-outlined text-[16px]">location_on</span>
+<span class="text-label-sm">200m from Legarda LRT</span>
+</div>
+</div>
+<!-- Study Cafe Card -->
+<div class="student-mode-border bg-surface-container p-4 rounded-xl shadow-sm border border-white/5 flex flex-col justify-between">
+<div>
+<span class="material-symbols-outlined text-primary-fixed text-[32px]" style="color: #ccff00;">local_cafe</span>
+<h3 class="font-label-md text-label-md mt-2 text-primary">24/7 Study Cafe @ Katipunan</h3>
+<p class="text-label-sm text-on-surface-variant mt-1">Free Wi-Fi &amp; Unli Coffee.</p>
+</div>
+<button class="mt-4 w-full bg-primary-fixed text-on-primary-fixed py-2 rounded-lg text-label-sm font-label-md hover:opacity-90" style="background-color: #ccff00;">View Path</button>
+</div>
+<!-- Free Printing Card -->
+<div class="student-mode-border bg-surface-container p-4 rounded-xl shadow-sm border border-white/5 flex flex-col justify-between">
+<div>
+<span class="material-symbols-outlined text-primary-fixed text-[32px]" style="color: #ccff00;">print</span>
+<h3 class="font-label-md text-label-md mt-2 text-primary">Free Printing for Lakbay Fellows</h3>
+<p class="text-label-sm text-on-surface-variant mt-1">Daily 10 pages free.</p>
+</div>
+<button class="mt-4 w-full border border-primary-fixed text-primary-fixed py-2 rounded-lg text-label-sm font-label-md hover:bg-primary-fixed/10" style="color: #ccff00; border-color: #ccff00;">Claim Coupon</button>
+</div>
+</div>
+<!-- Student ID Badge Promo -->
+<div class="bg-gradient-to-br from-primary-fixed to-primary-fixed-dim p-6 rounded-2xl text-on-primary-fixed relative overflow-hidden" style="background-image: linear-gradient(to bottom right, #ccff00, #b8e600);">
+<div class="relative z-10">
+<h3 class="font-headline-md text-headline-md">Verify Student ID</h3>
+<p class="text-label-md opacity-90 mt-1">Unlock 20% discount on all routes and priority boarding at terminals.</p>
+<button class="mt-6 bg-surface-container-lowest text-primary px-6 py-3 rounded-full font-label-md hover:scale-105 transition-transform">Get Started</button>
+</div>
+<span class="material-symbols-outlined absolute -bottom-4 -right-4 text-[120px] opacity-10 rotate-12">badge</span>
+</div>
+</div>
+</main>
+<!-- Report Issue FAB -->
+<button class="fixed right-6 bottom-24 w-14 h-14 bg-primary-fixed text-on-primary-fixed rounded-full shadow-lg flex items-center justify-center hover:scale-110 active:scale-95 transition-all z-50" id="report-fab" style="background-color: #ccff00; color: #061422;">
+<span class="material-symbols-outlined">add_comment</span>
+</button>
+<!-- Bottom Nav Bar -->
+<nav class="fixed bottom-0 w-full z-50 flex justify-around items-center h-16 px-4 pb-safe bg-surface-container-lowest border-t border-white/10 shadow-md rounded-t-xl">
+<a class="flex flex-col items-center justify-center text-on-surface-variant hover:text-primary-fixed transition-colors rounded-lg px-2 py-1" href="#">
+<span class="material-symbols-outlined">home</span>
+<span class="font-label-sm text-label-sm-mobile">Home</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant hover:text-primary-fixed transition-colors rounded-lg px-2 py-1" href="#">
+<span class="material-symbols-outlined">directions_transit</span>
+<span class="font-label-sm text-label-sm-mobile">Routes</span>
+</a>
+<a class="flex flex-col items-center justify-center bg-primary-fixed text-on-primary-fixed rounded-full px-4 py-1 active:scale-95 transition-transform duration-150" href="#" id="nav-reports" style="background-color: #ccff00; color: #061422;">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">warning</span>
+<span class="font-label-sm text-label-sm-mobile">Reports</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant hover:text-primary-fixed transition-colors rounded-lg px-2 py-1" href="#" id="nav-student">
+<span class="material-symbols-outlined">school</span>
+<span class="font-label-sm text-label-sm-mobile">Student</span>
+</a>
+</nav>
+<script>
+        function switchTab(tab) {
+            const reportsTab = document.getElementById('reports-tab');
+            const studentTab = document.getElementById('student-tab');
+            const glider = document.getElementById('segment-glider');
+            const fab = document.getElementById('report-fab');
+            const navReports = document.getElementById('nav-reports');
+            const navStudent = document.getElementById('nav-student');
+            const tabButtons = document.querySelectorAll('[onclick^="switchTab"]');
+            
+            if (tab === 'reports') {
+                reportsTab.classList.remove('hidden');
+                studentTab.classList.add('hidden');
+                glider.style.transform = 'translateX(0px)';
+                tabButtons[0].classList.add('text-on-primary-fixed');
+                tabButtons[0].classList.remove('text-on-surface');
+                tabButtons[1].classList.add('text-on-surface');
+                tabButtons[1].classList.remove('text-on-primary-fixed');
+                fab.style.display = 'flex';
+                
+                navReports.className = "flex flex-col items-center justify-center bg-primary-fixed text-on-primary-fixed rounded-full px-4 py-1 active:scale-95 transition-transform duration-150";
+                navReports.style.backgroundColor = "#ccff00";
+                navReports.style.color = "#061422";
+                
+                navStudent.className = "flex flex-col items-center justify-center text-on-surface-variant hover:text-primary-fixed transition-colors rounded-lg px-2 py-1";
+                navStudent.style.backgroundColor = "transparent";
+                navStudent.style.color = "";
+            } else {
+                reportsTab.classList.add('hidden');
+                studentTab.classList.remove('hidden');
+                glider.style.transform = 'translateX(calc(100% + 4px))';
+                tabButtons[1].classList.add('text-on-primary-fixed');
+                tabButtons[1].classList.remove('text-on-surface');
+                tabButtons[0].classList.add('text-on-surface');
+                tabButtons[0].classList.remove('text-on-primary-fixed');
+                fab.style.display = 'none';
+
+                navStudent.className = "flex flex-col items-center justify-center bg-primary-fixed text-on-primary-fixed rounded-full px-4 py-1 active:scale-95 transition-transform duration-150";
+                navStudent.style.backgroundColor = "#ccff00";
+                navStudent.style.color = "#061422";
+                
+                navReports.className = "flex flex-col items-center justify-center text-on-surface-variant hover:text-primary-fixed transition-colors rounded-lg px-2 py-1";
+                navReports.style.backgroundColor = "transparent";
+                navReports.style.color = "";
+            }
+        }
+    </script>
+
+
+
+
+
+
+</body></html>
